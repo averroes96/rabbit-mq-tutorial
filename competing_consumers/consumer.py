@@ -15,7 +15,7 @@ def callback(ch, method, properties, body):
     print(f" [x] Done processing {body.decode()} in {processing_time} seconds")
     ch.basic_ack(delivery_tag=method.delivery_tag)
 
-# channel.basic_qos(prefetch_count=1)
+channel.basic_qos(prefetch_count=1)
 channel.basic_consume(queue='letterbox', on_message_callback=callback)
 
 channel.start_consuming()
